@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MET // Training & Development Unit</title>
+    <style>
+        :root {
+            --bg-dark: #0a111c;
+            --bg-card: #0f1c2e;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-gold: #d4af37;
+            --accent-blue: #38bdf8;
+            --accent-fail: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            background-color: var(--bg-card);
+            border-bottom: 2px solid var(--accent-gold);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: var(--text-main);
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(15,28,46,0.8) 0%, rgba(10,17,28,1) 100%);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.25rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0auto 2rem auto;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background-color: #fff;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent-gold);
+        }
+
+        /* Core Values Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 6px;
+            padding: 2rem;
+            transition: border-color 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Table Design */
+        .table-wrapper {
+            overflow-x: auto;
+            background-color: var(--bg-card);
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        th {
+            background-color: rgba(0,0,0,0.2);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .fail-text {
+            color: var(--accent-fail);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050b12;
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">MET // <span>TDU</span></div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#doctrine">Doctrine</a>
+            <a href="#pipeline">Pipeline</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="badge">Classified Operational Directive</div>
+        <h1>Training & Development Unit</h1>
+        <p>The elite development forge of the MET infrastructure. We refine raw potential into high-tier tactical assets through standardized qualification protocols.</p>
+        <button class="btn" onclick="document.getElementById('pipeline').scrollIntoView({behavior: 'smooth'});">Review Pipeline</button>
+    </section>
+
+    <div class="container">
+
+        <section id="about">
+            <h2>01 // Operational Mandate</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.05rem;">
+                The Training and Development Unit (TDU) serves as the primary gateway and ongoing validation resource for all operating ranks within the community. Through simulation arrays, mechanical refinement loops, and comprehensive field logic evaluation, the TDU guarantees maximum operational coordination at all tiers of engagement.
+            </p>
+        </section>
+
+        <section id="doctrine">
+            <h2>02 // The Core Doctrine</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3><span>🥇</span> Absolute Integrity</h3>
+                    <p>Grading criteria are binary, cold, and transparent. We do not issue passing logs based on reputation or tenure. Performance dictates survival.</p>
+                </div>
+                <div class="card">
+                    <h3><span>🥈</span> Command Authority</h3>
+                    <p>Instructors maintain supreme command sovereignty within training blocks. Disruptive or non-compliant actions trigger immediate processing and dismissal.</p>
+                </div>
+                <div class="card">
+                    <h3><span>🥉</span> Hyper-Adaptability</h3>
+                    <p>System mechanics shift and operational environments adapt. TDU operators ingest systems updates proactively, keeping our combat data fresh.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pipeline">
+            <h2>03 // Live Gauntlet Matrix</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Candidates deploying into the Phase III Final Field Evaluation (FFE) are dynamically assessed against the following tracking parameters:</p>
+            
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Evaluated Parameter</th>
+                            <th>Impact Weight</th>
+                            <th>Target Standard</th>
+                            <th>Critical Failure Trigger</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Protocol Execution</strong></td>
+                            <td style="color: var(--accent-gold);">35%</td>
+                            <td>Flawless execution of clearing angles and safety frameworks.</td>
+                            <td class="fail-text">Intentional system exploit or structural safety violation.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Comms Brevity</strong></td>
+                            <td style="color: var(--accent-gold);">25%</td>
+                            <td>Clean, micro-second voice alerts utilizing correct jargon.</td>
+                            <td class="fail-text">Radio shouting, open-mic static, or total operational silence.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tactical Dominance</strong></td>
+                            <td style="color: var(--accent-gold);">25%</td>
+                            <td>Aggressive line-of-sight tracking and absolute coverage maintenance.</td>
+                            <td class="fail-text">Exposing positions, freezing under fire, or blue-on-blue crossfire.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Battle Composure</strong></td>
+                            <td style="color: var(--accent-gold);">15%</td>
+                            <td>Sustaining cognitive coordination while tactical layouts disintegrate.</td>
+                            <td class="fail-text">Panic reactions, combat spraying, or breaking operational character.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MET Community Framework. Internal TDU Server Terminal. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
